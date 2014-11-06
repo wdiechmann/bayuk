@@ -1,0 +1,50 @@
+<:Title>
+  {{ template main_path, "title", {controller_group: 'main'} }}
+
+<:Body>
+
+  <nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-5">
+          <span class="sr-only">Flip navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Jobs</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
+        <ul class="nav navbar-nav">
+        <:nav href="/" text="Forsiden" />
+        <:nav href="/jobs" text="Opgaver" />
+        <:nav href="/about" text="Kontakt" />
+        </ul>
+      <!-- <h3 class="text-muted">SL2017</h3> -->
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <div class="container-fluid">
+
+    <:volt:notices />
+
+    {{ template main_path, 'body', {controller_group: 'main'} }}
+
+    <div class="footer">
+			<p>
+				Jobber Database for <br/><strong>Spejdernes Lejr 2017</strong>
+				<span style="float: right"><small> hosted by: ALCO Company {{ this_year }}</small></span>
+			</p>
+    </div>
+
+  </div>
+
+<:Nav>
+
+  <li class="{{ if url.path.split('/')[1] == attrs.href.split('/')[1] }}active{{ end }}">
+    <a href="{{ attrs.href }}">{{ attrs.text }}</a>
+  </li>
+

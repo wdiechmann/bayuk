@@ -1,0 +1,56 @@
+<:Title>
+  Jobber Databasen - Spejdernes Lejr 2017
+
+<:Body>
+  <h1>Ledige jobs på Spejdernes Lejr 2017</h1>
+
+	<p>Her finder du alle de job opslag vi har i øjeblikket. </p>
+	<p>Kender du til et job, som burde være med på listen, så skriv endelig til jobs@sl2017.dk</p>
+	
+	<p>Du kan søge et job på 2 måder:</p>
+	<ul>
+		<li>enten ved at finde det i listen nedenfor (brug søgefeltet til at begrænse oversigten) og trykke på 'jatak' ud for jobbet</li>
+		<li>eller ved at tilmelde dig - og så kontakter vi dig for at finde det helt rigtige job til dig</li>
+	</ul>
+	
+  <h2>Ledige jobs</h2>
+	
+	<div class="progress">
+		<div class="progress-bar" role="progressbar" style="width: {{ percent_completed }}%">
+			{{ percent_completed }}% tildelt
+		</div>
+	</div>
+	
+	<div class="container-fluid">
+		<div class="row" style="margin-bottom: 10px">
+			<div class="col-md-12">
+				<div class="search">
+					<div class="form-search search-only">
+						<i class="search-icon glyphicon glyphicon-search"></i>
+						<input type="text" class="form-control search-query" value="{{ _query }}">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+       {{ if queried_jobs.size == 0 }}
+         {{ if _query.present? }}
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" style="margin-bottom: 10px">
+           <h5>Ingen jobs fundet</h5>
+				 </div>
+         {{ end }}
+       {{ end }}
+
+			{{ queried_jobs.each do |job| }}
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" style="margin-bottom: 10px">
+					<div class="job-commercial">
+						<h4>{{ job._name }}</h4>
+						<strong>hvor:</strong>{{ job._where_at }}<br/>
+						<strong>hvornår:</strong>{{ job._when_at }}<br/>
+						<p>{{ job._how_to}}</p>
+					</div>
+				</div>
+			{{ end }}
+		</div>
+	

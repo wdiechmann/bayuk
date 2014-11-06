@@ -1,0 +1,74 @@
+<:Title>
+  Opgaver - Jobs
+
+<:Body>
+  <h1>Oversigt over jobs</h1>
+	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+			  <form e-submit="add_job" role="form">
+					<div class="form-group">
+			  		<label>Nyt job:</label>
+						<input class="form-control" type="text" value={{page._new_job}} />
+					</div>
+			  </form>
+			</div>
+		</div>
+
+		<div class="row" style="margin-bottom: 10px">
+			<div class="col-md-12">
+				<input class="form-control" type="text" value={{_lookup_job}} placeholder="Find et job"/>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+				<:pagination total="{{ _jobs.size }}" per_page="{{ per_page }}" window="5" page="{{ params._page }}" />
+				<table class="jobs-table">
+					{{ paged_jobs.each do |job| }}
+						<tr e-click="params._index = index" class="{{ if params._index.or(0).to_i == index }}selected{{ end }}">
+							<td><input type="checkbox" checked="{{ job._completed }}"/></td>
+							<td class="{{ if job._completed}}complete{{ end }}">{{ job._name }}</td>
+							<td style="width: 20px"><button e-click="remove_job(job)">x</button></td>
+						</tr>
+					{{ end }}
+				</table>		
+			
+			</div>
+
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+				{{ if current_job }}
+					<div class="well">
+						<h2>{{ current_job._name}}</h2>
+						<div class="form-group">
+				  		<label>Besat</label>
+							<input type="checkbox" checked="{{ current_job._completed }}"/>
+						</div>
+						<div class="form-group">
+				  		<label>Titel</label>
+							<input class="form-control" type="text" value={{current_job._name}} />
+						</div>
+						<div class="form-group">
+				  		<label>Hvor</label>
+							<input class="form-control" type="text" value={{current_job._where_at}} placeholder="56.165150, 9.538570 | Skolegade 59, Silkeborg | Lejrbålspladsen " />
+						</div>
+						<div class="form-group">
+				  		<label>Hvornår/Hvorlænge</label>
+							<input class="form-control" type="text" value={{current_job._when_at}} placeholder="før lejren | pionér | ankomst | 06-06:30 på hverdage | 17. juli "/>
+						</div>
+						<div class="form-group">
+				  		<label>Hvem</label>
+							<input class="form-control" type="text" value={{current_job._who}} placeholder="jobberID, email-adresser eller kælenavne adskilt af ','" />
+						</div>
+						<div class="form-group">
+				  		<label>Hvordan</label>
+							<textarea placeholder="beskriv arbejdsgang, procedure, særlige krav til jobbere, værktøj, arbejdstid, ..." >{{ current_job._how_to }}</textarea>
+						</div>
+					</div>
+				{{ end }}
+			</div>
+
+		</div>
+		
+	</div>

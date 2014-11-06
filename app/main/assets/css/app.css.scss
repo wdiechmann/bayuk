@@ -1,0 +1,36 @@
+// Place your apps css here
+
+.jobs-table { width: 100%;}
+
+.jobs-table td { 
+  padding: 5px;
+  border-top: 1px solid #eeeeee;
+}
+
+.complete, tr.selected td.complete {
+  text-decoration: line-through;
+  color: #cccccc;
+}
+
+tr.selected td {
+  background-color: #57a275;
+  color: #ffffff;
+}
+
+textarea {
+  height: 140px;
+  width: 100%;
+}
+
+tr.selected td button {
+  color: #000000;
+}
+
+.completed { text-decoration: strike-through;}
+.job-commercial { 
+  background-color: #ea5732; 
+  border-radius: 5px; 
+  padding: 1px 10px 1px 10px; 
+  margin: 0px;
+  min-height: 200px;
+}
